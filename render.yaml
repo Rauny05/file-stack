@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: file-stack
+    runtime: node
+    buildCommand: npm install && git lfs pull
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
