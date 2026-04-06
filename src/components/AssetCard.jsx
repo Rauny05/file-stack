@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
 import '../styles/assetcard.css';
 
+const API = import.meta.env.VITE_API_URL || '';
+
 function fileIcon(type) {
   if (type === 'video') return '🎬';
   if (type === 'pdf') return '📄';
@@ -34,6 +36,7 @@ function CommentContent({ text }) {
 const RATING = { up: '👍', tick: '✅', cross: '❌' };
 
 export default function AssetCard({ file, projectName, onImageClick, imageIndex }) {
+  const fileUrl = `${API}${fileUrl}`;
   const k = (t) => `filestack_${t}_${projectName}_${file.name}`;
 
   const [displayName, setDisplayName] = useState(() =>
@@ -106,14 +109,14 @@ export default function AssetCard({ file, projectName, onImageClick, imageIndex 
           <div className="ac-video-wrap" onClick={e => e.stopPropagation()}>
             <button className="ac-video-close" onClick={() => setShowVideo(false)}>✕</button>
             <video
-              src={file.url}
+              src={fileUrl}
               controls
               autoPlay
               className="ac-video-player"
             >
               Your browser does not support this video format. Try downloading it.
             </video>
-            <a href={file.url} download={file.name} className="ac-video-dl">↓ Download</a>
+            <a href={fileUrl} download={file.name} className="ac-video-dl">↓ Download</a>
           </div>
         </div>
       )}
@@ -148,12 +151,12 @@ export default function AssetCard({ file, projectName, onImageClick, imageIndex 
         }}
       >
         {isImage ? (
-          <img src={file.url} alt={displayName} className="ac-thumb-img" loading="lazy" />
+          <img src={fileUrl} alt={displayName} className="ac-thumb-img" loading="lazy" />
         ) : isVideo ? (
           <>
             <video
               ref={videoRef}
-              src={file.url}
+              src={fileUrl}
               className="ac-thumb-video"
               preload="metadata"
               muted
@@ -168,7 +171,7 @@ export default function AssetCard({ file, projectName, onImageClick, imageIndex 
 
         {rating && <div className="ac-rating-badge">{RATING[rating]}</div>}
         <a
-          href={file.url}
+          href={fileUrl}
           download={file.name}
           className="ac-dl-overlay"
           onClick={e => e.stopPropagation()}

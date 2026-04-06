@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import '../styles/lightbox.css';
 
+const API = import.meta.env.VITE_API_URL || '';
+
 export default function Lightbox({ images, currentIndex, onClose, onNavigate }) {
   const current = images[currentIndex];
 
@@ -27,7 +29,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }) 
   return (
     <div className="lightbox-overlay" onClick={onClose}>
       <div className="lightbox-content" onClick={e => e.stopPropagation()}>
-        <img src={current.url} alt={current.name} className="lightbox-image" />
+        <img src={`${API}${current.url}`} alt={current.name} className="lightbox-image" />
         <div className="lightbox-caption">{current.name}</div>
       </div>
       <button className="lb-arrow lb-prev" onClick={e => { e.stopPropagation(); prev(); }}>‹</button>
