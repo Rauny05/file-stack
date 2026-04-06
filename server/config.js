@@ -1,6 +1,6 @@
 const path = require('path');
 
-const PORTFOLIO_ROOT = process.env.PORTFOLIO_ROOT || '/Users/raunaqrm/Documents/Browser-Project';
+const PORTFOLIO_ROOT = process.env.PORTFOLIO_ROOT || path.join(__dirname, '..', 'portfolio');
 
 const ALLOWED_EXTENSIONS = new Set([
   '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg',
