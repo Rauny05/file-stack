@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import AssetCard from './AssetCard';
 import '../styles/panel.css';
 
+const API = import.meta.env.VITE_API_BASE || '';
+
 export default function ProjectPanel({ project, files, onClose, onImageClick, images }) {
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
@@ -26,7 +28,7 @@ export default function ProjectPanel({ project, files, onClose, onImageClick, im
           </div>
           <div className="panel-header-actions">
             <a
-              href={`/api/projects/${encodeURIComponent(project.name)}/download`}
+              href={`${API}/api/projects/${encodeURIComponent(project.name)}/download`}
               download={`${project.name}.zip`}
               className="dl-folder-btn"
               title="Download entire folder as ZIP"

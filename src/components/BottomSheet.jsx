@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import AssetCard from './AssetCard';
 import '../styles/bottomsheet.css';
 
+const API = import.meta.env.VITE_API_BASE || '';
+
 export default function BottomSheet({ project, files, onClose, onImageClick, images }) {
   const sheetRef = useRef(null);
   const [translateY, setTranslateY] = useState(0);
@@ -57,7 +59,7 @@ export default function BottomSheet({ project, files, onClose, onImageClick, ima
             <span className="bs-count">{project.fileCount} files</span>
           </div>
           <a
-            href={`/api/projects/${encodeURIComponent(project.name)}/download`}
+            href={`${API}/api/projects/${encodeURIComponent(project.name)}/download`}
             download={`${project.name}.zip`}
             className="bs-dl-all-btn"
           >

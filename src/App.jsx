@@ -7,6 +7,8 @@ import BottomSheet from './components/BottomSheet';
 import Lightbox from './components/Lightbox';
 import './styles/layout.css';
 
+const API = import.meta.env.VITE_API_BASE || '';
+
 export default function App() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +31,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/projects');
+      const res = await fetch(`${API}/api/projects`);
       if (!res.ok) throw new Error();
       setProjects(await res.json());
     } catch {
@@ -41,13 +43,13 @@ export default function App() {
 
   useEffect(() => { fetchProjects(); }, [fetchProjects]);
   useEffect(() => {
-    fetch('/api/config').then(r => r.json()).then(setConfig).catch(() => {});
+    fetch(`${API}/api/config`).then(r => r.json()).then(setConfig).catch(() => {});
   }, []);
 
   const openProject = useCallback(async (project) => {
     setSelectedProject(project);
     try {
-      const res = await fetch(`/api/projects/${encodeURIComponent(project.name)}/files`);
+      const res = await fetch(`${API}/api/projects/${encodeURIComponent(project.name)}/files`);
       if (!res.ok) throw new Error();
       setProjectFiles(await res.json());
     } catch {
