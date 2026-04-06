@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AssetCard from './AssetCard';
 import '../styles/panel.css';
 
-const API = import.meta.env.VITE_API_BASE || '';
+const API = import.meta.env.VITE_API_URL || '';
 
 export default function ProjectPanel({ project, files, onClose, onImageClick, images }) {
   useEffect(() => {

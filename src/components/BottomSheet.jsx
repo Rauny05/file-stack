@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import AssetCard from './AssetCard';
 import '../styles/bottomsheet.css';
 
-const API = import.meta.env.VITE_API_BASE || '';
+const API = import.meta.env.VITE_API_URL || '';
 
 export default function BottomSheet({ project, files, onClose, onImageClick, images }) {
   const sheetRef = useRef(null);

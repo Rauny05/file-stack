@@ -7,7 +7,7 @@ import BottomSheet from './components/BottomSheet';
 import Lightbox from './components/Lightbox';
 import './styles/layout.css';
 
-const API = import.meta.env.VITE_API_BASE || '';
+const API = import.meta.env.VITE_API_URL || '';
 
 export default function App() {
   const [projects, setProjects] = useState([]);
