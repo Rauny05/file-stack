@@ -1,0 +1,108 @@
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeInUp 0.4s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(124,92,252,0.2);
+}
+
+.card-folder-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 4px;
+}
+
+.folder-icon-clean {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folder-icon-clean svg {
+  filter: drop-shadow(0 4px 10px rgba(90,200,250,0.3));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.project-card:hover .folder-icon-clean svg {
+  transform: translateY(-3px) scale(1.05);
+  filter: drop-shadow(0 8px 16px rgba(90,200,250,0.45));
+}
+
+.folder-count-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  min-width: 18px;
+  text-align: center;
+  font-family: var(--font-body);
+}
+
+.card-info { width: 100%; }
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.card-file-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--border-light);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+  .project-card {
+    flex-direction: row;
+    padding: 14px 16px;
+    gap: 14px;
+    text-align: left;
+  }
+  .card-folder-area {
+    width: auto;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .folder-icon-clean svg {
+    width: 48px;
+    height: 38px;
+  }
+  .card-info { flex: 1; min-width: 0; }
+  .card-meta { justify-content: flex-start; }
+}
