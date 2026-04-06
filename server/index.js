@@ -6,7 +6,7 @@ const projectsRouter = require('./routes/projects');
 const mediaRouter = require('./routes/media');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(helmet({
   contentSecurityPolicy: {
@@ -24,7 +24,11 @@ app.use(helmet({
   referrerPolicy: { policy: 'no-referrer' }
 }));
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:3000'], methods: ['GET'] }));
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+  : ['http://localhost:5173', 'http://localhost:3000'];
+
+app.use(cors({ origin: allowedOrigins, methods: ['GET'] }));
 
 app.use('/api', rateLimit({ windowMs: 15 * 60 * 1000, max: 1000, standardHeaders: true, legacyHeaders: false }));
 app.use('/media', rateLimit({ windowMs: 15 * 60 * 1000, max: 5000, standardHeaders: true, legacyHeaders: false }));
