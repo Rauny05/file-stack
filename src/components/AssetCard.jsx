@@ -36,7 +36,7 @@ function CommentContent({ text }) {
 const RATING = { up: '👍', tick: '✅', cross: '❌' };
 
 export default function AssetCard({ file, projectName, onImageClick, imageIndex }) {
-  const fileUrl = `${API}${fileUrl}`;
+  const fileUrl = `${API}${file.url}`;
   const k = (t) => `filestack_${t}_${projectName}_${file.name}`;
 
   const [displayName, setDisplayName] = useState(() =>
